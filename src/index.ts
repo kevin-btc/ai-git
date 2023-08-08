@@ -5,30 +5,30 @@ import { writeFileSync, existsSync } from "fs";
 import defaultConfig from "./config.js";
 import rc from "rc";
 
-const customConfig = rc("git-ai", {});
+const customConfig = rc("ai-git", {});
 
 const createCustomConfigFile = () => {
-  const filePath = "./.git-airc";
+  const filePath = "./.ai-gitrc";
   if (existsSync(filePath)) {
     console.error(
-      ".git-ai config file already exists. If you want to overwrite it, please delete or rename the existing file first."
+      ".ai-git config file already exists. If you want to overwrite it, please delete or rename the existing file first."
     );
     return;
   }
   writeFileSync(filePath, JSON.stringify(defaultConfig, null, 2));
   console.info(
-    ".git-airc config file has been created with default values. You can now customize it as needed.",
-    "\nDon't forget to add .git-airc to your .gitignore file."
+    ".ai-gitrc config file has been created with default values. You can now customize it as needed.",
+    "\nDon't forget to add .ai-gitrc to your .gitignore file."
   );
 };
 
 program
   .command("init-config")
-  .description("Create a custom config file for git-ai")
+  .description("Create a custom config file for ai-git")
   .action(createCustomConfigFile);
 
 program
-  .name("git-ai")
+  .name("ai-git")
   .command("commit")
   .description("Automatically generate a commit message using AI")
   .option("-t, --token <type>", "Set POLYFACT_TOKEN")

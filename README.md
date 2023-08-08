@@ -22,34 +22,40 @@ Git AI is a tool that helps generate commit messages using AI. It simplifies the
 ### Installation
 
 ```
-npm install git-ai
+npm install -g @polyfact/git-ai
+```
+
+or
+
+```
+yarn global add @polyfact/git-ai
 ```
 
 ### Configuration
 
-Create a `.git-airc` file to customize options.
+Create a `.ai-gitrc` file to customize options.
 
 ```
-git-ai init-config
+ai-git init-config
 ```
 
 Or set options as CLI flags:
 
 ```
-git-ai commit --token YOUR_TOKEN --language english --model gpt-3.5-turbo
+ai-git commit --token YOUR_TOKEN --language english --model gpt-3.5-turbo
 ```
 
 ### Basic Usage
 
 ```
 # Auto generate and commit
-git-ai commit
+ai-git commit
 
 # Generate message without auto commit
-git-ai commit --no-autocommit
+ai-git commit --no-autocommit
 
 # Open editor to refine message after commit
-git-ai commit --editor
+ai-git commit --editor
 ```
 
 ## Configuration
@@ -65,12 +71,3 @@ The CLI and config file options allow customizing the commit message generation:
 - `exclude` - Patterns to exclude from diff
 - `filter` - Git diff filter flag
 - `template` - Prompt template for AI
-
-## Code Overview
-
-- `config.js` - Default options
-- `index.ts` - CLI logic
-- `autocommit.ts` - Main logic
-- `helpers/*` - Shared utility functions
-
-Let me know if any part of the README needs more explanation!
