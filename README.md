@@ -1,6 +1,6 @@
-# AI Git
+# Git AI
 
-AI Git Commit is a tool that helps generate commit messages using AI. It simplifies the commit process by automatically generating a short, descriptive commit message based on your code changes.
+Git AI is a tool that helps generate commit messages using AI. It simplifies the commit process by automatically generating a short, descriptive commit message based on your code changes.
 
 ## Features
 
@@ -22,34 +22,34 @@ AI Git Commit is a tool that helps generate commit messages using AI. It simplif
 ### Installation
 
 ```
-npm install ai-git-commit
+npm install git-ai
 ```
 
 ### Configuration
 
-Create a `.ai-gitrc` file to customize options.
+Create a `.git-airc` file to customize options.
 
 ```
-ai-git init-config
+git-ai init-config
 ```
 
 Or set options as CLI flags:
 
 ```
-ai-git commit --token YOUR_TOKEN --language english --model gpt-3.5-turbo
+git-ai commit --token YOUR_TOKEN --language english --model gpt-3.5-turbo
 ```
 
 ### Basic Usage
 
 ```
 # Auto generate and commit
-ai-git commit
+git-ai commit
 
 # Generate message without auto commit
-ai-git commit --no-autocommit
+git-ai commit --no-autocommit
 
 # Open editor to refine message after commit
-ai-git commit --editor
+git-ai commit --editor
 ```
 
 ## Configuration

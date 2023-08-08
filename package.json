@@ -1,9 +1,9 @@
 {
-  "name": "ai-git",
+  "name": "git-ai",
   "version": "1.0.0",
   "description": "Generates auto commit messages with Polyfact",
   "main": "./build/autocommit.js",
-  "repository": "https://github.com/kgricour/ai-git",
+  "repository": "https://github.com/kgricour/git-ai",
   "author": "contact@polyfact.com",
   "license": "MIT",
   "dependencies": {
@@ -17,7 +17,7 @@
   },
   "preferGlobal": true,
   "bin": {
-    "ai-git": "./build/autocommit.js"
+    "git-ai": "./build/autocommit.js"
   },
   "devDependencies": {
     "@types/node": "^20.4.8",
@@ -26,6 +26,6 @@
     "typescript": "^5.1.6"
   },
   "scripts": {
-    "build": "esbuild src/index.ts --bundle --outfile=build/ai-git.tmp --platform=node && echo '#!/usr/bin/env node\n' | cat - build/ai-git.tmp > build/ai-git && rm build/ai-git.tmp"
+    "build": "esbuild src/index.ts --bundle --outfile=build/git-ai.tmp --platform=node && echo '#!/usr/bin/env node\n' | cat - build/git-ai.tmp > build/git-ai && rm build/git-ai.tmp"
   }
 }
