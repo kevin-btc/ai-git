@@ -17,7 +17,7 @@
   },
   "preferGlobal": true,
   "bin": {
-    "ai-git": "./build/autocommit.js"
+    "ai-git": "./build/ai-git.js"
   },
   "devDependencies": {
     "@types/node": "^20.4.8",
