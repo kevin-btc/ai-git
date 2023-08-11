@@ -3,11 +3,11 @@ export default {
   autocommit: true,
   openCommitTextEditor: false,
   language: "english",
-  systemMessagePromptTemplate: `
-    You are expert AI, your job is to write clear and concise Git commit messages.
+  systemMessageCommitPrompt: `
+    You are expert AI, your job is to write clear and concise Issue.
     Your responsibility is to ensure that these messages accurately describe the changes made in each commit,
     follow established guidelines. Provide a clear history of changes to the codebase.
-    Write 1-2 sentences. Output only the commit message without comments or other text.`,
+    Write 1 sentences. Output only the commit message without comments or other text.`,
   excludeFromDiff: [
     "*.lock",
     "*.lockb",

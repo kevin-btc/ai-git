@@ -2,18 +2,7 @@ import { execSync, spawn } from "child_process";
 import { tokenCount, getModelSize, generate, splitString } from "polyfact";
 import chalk from "chalk";
 import ellipsis from "helpers/ellipsis";
-
-export interface Config {
-  polyfactToken: string;
-  modelName: string;
-  maxTokensInResponse: number;
-  systemMessagePromptTemplate: string;
-  language: string;
-  autocommit?: boolean;
-  openCommitTextEditor?: boolean;
-  excludeFromDiff?: string[];
-  diffFilter?: string;
-}
+import { CommitConfig } from "types";
 
 const validateGitRepository = () => {
   try {
@@ -26,7 +15,7 @@ const validateGitRepository = () => {
     process.exit(1);
   }
 };
-const validatePolyfactToken = (config: Config) => {
+const validatePolyfactToken = (config: CommitConfig) => {
   if (!config.polyfactToken) {
     console.error(
       "Please set POLYFACT_TOKEN ! See https://app.polyfact.com and export it as an environment variable."
@@ -35,7 +24,7 @@ const validatePolyfactToken = (config: Config) => {
   }
 };
 
-const getDiff = (config: Config): string => {
+const getDiff = (config: CommitConfig): string => {
   const excludeFromDiff = config.excludeFromDiff || [];
   const diffFilter = config.diffFilter || "ACMRTUXB";
   const diffCommand = `git diff --staged \
@@ -54,15 +43,15 @@ const getDiff = (config: Config): string => {
   return diff;
 };
 
-const formatPrompt = (config: Config, diff: string) => `
-  ${config.systemMessagePromptTemplate}
+const formatPrompt = (config: CommitConfig, diff: string) => `
+  ${config.systemMessageCommitPrompt}
   Read the following git diff for multiple files and 
   write 1-2 sentences commit message in ${config.language}
   without mentioning lines or files.
   Explain why these changes were made (summarize the reasoning):
   ${diff}`;
 
-export const autoCommit = async (config: Config) => {
+export const autoCommit = async (config: CommitConfig) => {
   validateGitRepository();
   validatePolyfactToken(config);
 

@@ -1,9 +1,10 @@
-import { program } from "commander";
-import { Config, autoCommit } from "./autocommit";
+import { Command, program } from "commander";
+import { autoCommit } from "./autocommit";
 import { writeFileSync, existsSync } from "fs";
 
 import defaultConfig from "./config.js";
 import rc from "rc";
+import { CommitConfig } from "./types";
 
 const customConfig = rc("ai-git", {});
 
@@ -22,28 +23,35 @@ const createCustomConfigFile = () => {
   );
 };
 
+const applyGlobalOptions = (command: Command) => {
+  return command
+    .option("-t, --token <type>", "Set POLYFACT_TOKEN")
+    .option("-m, --model <type>", "Set Model Name")
+    .option("--maxTokens <number>", "Set Max Tokens In Response")
+    .option("-l, --language <type>", "Language")
+    .option("-p, --prompt <prompt>", "System Message Prompt")
+    .option("--exclude <items>", "Exclude patterns from diff", (val) =>
+      val.split(",")
+    )
+    .option("--filter <type>", "Diff Filter");
+};
+
 program
   .command("init-config")
   .description("Create a custom config file for ai-git")
   .action(createCustomConfigFile);
 
-program
+applyGlobalOptions(program)
   .name("ai-git")
   .command("commit")
   .description("Automatically generate a commit message using AI")
-  .option("-t, --token <type>", "Set POLYFACT_TOKEN")
-  .option("-m, --model <type>", "Set Model Name")
-  .option("--maxTokens <number>", "Set Max Tokens In Response")
+
   .option("--template <type>", "System Message Prompt Template")
-  .option("-l, --language <type>", "Language for Commit Message")
   .option("--autocommit", "Enable auto commit")
   .option("--editor", "Open Commit Text Editor after commit")
-  .option("--exclude <items>", "Exclude patterns from diff", (val) =>
-    val.split(",")
-  )
   .option("--filter <type>", "Diff Filter")
   .action((options) => {
-    const config: Config = {
+    const config: CommitConfig = {
       polyfactToken:
         options.token ||
         customConfig.polyfactToken ||
@@ -54,10 +62,10 @@ program
         options.maxTokens ||
         customConfig.maxTokensInResponse ||
         defaultConfig.maxTokensInResponse,
-      systemMessagePromptTemplate:
+      systemMessageCommitPrompt:
         options.template ||
-        customConfig.systemMessagePromptTemplate ||
-        defaultConfig.systemMessagePromptTemplate,
+        customConfig.systemMessageCommitPrompt ||
+        defaultConfig.systemMessageCommitPrompt,
       language:
         options.language || customConfig.language || defaultConfig.language,
       autocommit:
