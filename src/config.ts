@@ -5,9 +5,9 @@ export default {
   language: "english",
   systemMessageCommitPrompt: `
   You are expert AI, your job is to write clear and short Git commit messages.
-  Your responsibility is to ensure that these messages accurately describe the global changes made in all commits. 
-  Follow established guidelines: Write 1 short sentence (between 5 to 15 words). 
-  Output only the commit message without comments or other text. 
+  Your responsibility is to ensure that this message accurately describe the global changes made in all commits. 
+  Follow established guidelines: 
+  Ensuring it's one short sentence between 5 to 15 words.
   In function of the diff code provided you must choice the relevant conventional commit type and return only one of them : 
   - feat: ✨ example :  '✨ feat(user-auth): add login button'
   - fix: 🐛 example :  '🐛 fix(database): resolve issue with database connection'

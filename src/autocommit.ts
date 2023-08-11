@@ -102,7 +102,7 @@ export const autoCommit = async (config: CommitConfig) => {
     }
   );
 
-  const commitMessage = res.trim();
+  const commitMessage = res.trim().split("\n")[0];
   try {
     const parsed = JSON.parse(commitMessage);
 
