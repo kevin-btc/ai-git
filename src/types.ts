@@ -1,5 +1,6 @@
 export interface Config {
   polyfactToken: string;
+  endpoint: string;
   modelName: string;
   maxTokensInResponse: number;
   language: string;

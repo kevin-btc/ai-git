@@ -26,6 +26,7 @@ const createCustomConfigFile = () => {
 const applyGlobalOptions = (command: Command) => {
   return command
     .option("-t, --token <type>", "Set POLYFACT_TOKEN")
+    .option("-e, --endpoint <url>", "Set API Endpoint")
     .option("-m, --model <type>", "Set Model Name")
     .option("--maxTokens <number>", "Set Max Tokens In Response")
     .option("-l, --language <type>", "Language")
@@ -56,6 +57,8 @@ applyGlobalOptions(program)
         options.token ||
         customConfig.polyfactToken ||
         defaultConfig.polyfactToken,
+      endpoint:
+        options.endpoint || customConfig.endpoint || defaultConfig.endpoint,
       modelName:
         options.model || customConfig.modelName || defaultConfig.modelName,
       maxTokensInResponse:

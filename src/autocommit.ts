@@ -1,5 +1,10 @@
 import { execSync, spawn } from "child_process";
-import { tokenCount, getModelSize, generate, splitString } from "polyfact";
+import {
+  tokenCount,
+  getModelSize,
+  splitString,
+  generateWithTokenUsage,
+} from "polyfact";
 import chalk from "chalk";
 import ellipsis from "helpers/ellipsis";
 import { CommitConfig } from "types";
@@ -77,12 +82,15 @@ export const autoCommit = async (config: CommitConfig) => {
           .replaceAll(filename, "")
           .replaceAll("a/ b/\n", "");
         const chunkedPrompt = formatPrompt(config, content);
-        return await generate(
+        return await generateWithTokenUsage(
           chunkedPrompt,
           {},
-          { token: config.polyfactToken }
+          { token: config.polyfactToken, endpoint: config.endpoint }
         )
-          .then((res) => ({ filename, changes: res.trim() }))
+          .then((res) => ({
+            filename,
+            changes: res.result.trim() as unknown as string,
+          }))
           .catch((e) => {
             console.error(`Error during Polyfact request: ${e.message}`);
             process.exit(1);
@@ -95,14 +103,16 @@ export const autoCommit = async (config: CommitConfig) => {
   }
 
   prompt = formatPrompt(config, diff);
-  const res = await generate(prompt, {}, { token: config.polyfactToken }).catch(
-    (e) => {
-      console.error(`Error during OpenAI request: ${e.message}`);
-      process.exit(1);
-    }
-  );
+  const res = await generateWithTokenUsage(
+    prompt,
+    {},
+    { token: config.polyfactToken, endpoint: config.endpoint }
+  ).catch((e) => {
+    console.error(`Error during OpenAI request: ${e.message}`);
+    process.exit(1);
+  });
 
-  const commitMessage = res.trim().split("\n")[0];
+  const commitMessage = res.result.trim().split("\n")[0];
   try {
     const parsed = JSON.parse(commitMessage);
 
