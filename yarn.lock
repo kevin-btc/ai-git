@@ -870,10 +870,10 @@ polyfact-io-ts@^2.2.20:
   resolved "https://registry.yarnpkg.com/polyfact-io-ts/-/polyfact-io-ts-2.2.20.tgz#ffb2226d71bf780c0dd398e052aa768c7af167b8"
   integrity sha512-qGF6cWn4sKKrVULhJPRIBF/iOvyFLJpeR59ejD9BpSmSjj+xaY5GE98SRycloR0ORQVMZuedi71VurSTBq5zeQ==
 
-polyfact@^0.1.47:
-  version "0.1.47"
-  resolved "https://registry.yarnpkg.com/polyfact/-/polyfact-0.1.47.tgz#668e99c0be5ffc301d9ef3ce932d0565a2a77b9e"
-  integrity sha512-o9Gs5aTDV/xAcjTsB9c7b10AdEZd+H2efnmWG+sdfTADJiifFhwxIU9lv/tF70d5p3p/IybI4Va3RGeRHWE85g==
+polyfact@^0.1.48:
+  version "0.1.48"
+  resolved "https://registry.yarnpkg.com/polyfact/-/polyfact-0.1.48.tgz#c4379416f877043bccacd5a22e5580e92711463f"
+  integrity sha512-lpFbkbyXXtaxLuPnzUHFHDh6vcRQExlWXyLhCdmgK+G458vdtDk86lRcz9EBcl6FgedZq5QIKAAXIx8vg4Moyw==
   dependencies:
     "@supabase/supabase-js" "^2.31.0"
     "@types/readable-stream" "^4.0.0"
