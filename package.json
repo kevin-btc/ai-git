@@ -1,6 +1,6 @@
 {
   "name": "@polyfact/ai-git",
-  "version": "1.0.4",
+  "version": "1.0.5",
   "description": "Generates auto commit messages with Polyfact",
   "main": "./build/autocommit.js",
   "repository": "https://github.com/kgricour/ai-git",

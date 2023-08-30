@@ -19,7 +19,9 @@ const createCustomConfigFile = () => {
   writeFileSync(filePath, JSON.stringify(defaultConfig, null, 2));
   console.info(
     ".ai-gitrc config file has been created with default values. You can now customize it as needed.",
-    "\nDon't forget to add .ai-gitrc to your .gitignore file."
+    "\nDon't forget to add .ai-gitrc to your .gitignore file.",
+    "\nFor global config, you can move it to ~/.ai-gitrc for mac or linux, or %USERPROFILE%\\.ai-gitrc for windows.",
+    "And after that,  you can run `ai-git commit` without any options from anywhere."
   );
 };
 
